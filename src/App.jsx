@@ -12,8 +12,8 @@ import {
   UserDashboardRoute,
   UserAdoptionRoute,
   UserRegistrationRoute,
+  UserForgotPasswordRoute,
   UserBookingRoute,
-  UserBookingFormRoute,
   UserAdoptionFormRoute,
 } from "./Routes/UserRoutes/UserRoutes";
 import {
@@ -37,8 +37,8 @@ const routers = createBrowserRouter([
   UserDashboardRoute,
   UserAdoptionRoute,
   UserRegistrationRoute,
+  UserForgotPasswordRoute,
   UserBookingRoute,
-  UserBookingFormRoute,
   UserAdoptionFormRoute,
 ]);
 

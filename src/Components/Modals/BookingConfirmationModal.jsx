@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CheckCircle } from "lucide-react";
 
 function BookingConfirmationModal({ isOpen, onClose }) {
+    useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 1500);
+      return () => clearTimeout(timer); 
+    }
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (

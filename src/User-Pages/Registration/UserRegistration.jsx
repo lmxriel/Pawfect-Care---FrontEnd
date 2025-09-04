@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import PawfectCareLogo from "../../assets/User-Page-Image/PawfectCareLogo.svg";
 
 export default function UserRegistrationPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -100,12 +101,14 @@ export default function UserRegistrationPage() {
       <div className="relative z-10 w-full max-w-lg space-y-6 bg-white/90 backdrop-blur-md shadow-xl rounded-2xl p-8">
         {/* Logo */}
         <div className="text-center">
-          <div className="text-3xl font-semibold text-[#a16f4a] flex items-center justify-center gap-2">
-            <span role="img" aria-label="paw">
-              🐾
-            </span>{" "}
-            Pawfect Care
-          </div>
+        <div className="text-3xl font-semibold text-[#a16f4a] flex items-center justify-center gap-2">
+          <img 
+            src={PawfectCareLogo} 
+            alt="Pawfect Care Logo" 
+            className="w-10 h-10" 
+          />
+          Pawfect Care
+        </div>
         </div>
 
         {/* Registration Form */}

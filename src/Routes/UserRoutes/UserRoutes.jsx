@@ -3,9 +3,8 @@ import UserDashboardPage from "../../User-Pages/Dashboard/UserDashboardPage";
 import UserRegistrationPage from "../../User-Pages/Registration/UserRegistration";
 import AdoptionPage from "../../User-Pages/Adoption/AdoptionPage";
 import BookingPage from "../../User-Pages/Booking/BookingPage";
-import BookingFormPage from "../../User-Pages/Booking/BookingForm";
 import AdoptionFormPage from "../../User-Pages/Adoption/AdoptionForm";
-
+import ForgotPasswordPage from "../../User-Pages/ForgotPassword/ForgotPassword";
 const UserDashboardRoute = {
   path: "/user/dashboard",
   element: <UserDashboardPage />,
@@ -18,6 +17,10 @@ const UserRegistrationRoute = {
   path: "/user/registration",
   element: <UserRegistrationPage />,
 };
+const UserForgotPasswordRoute = {
+  path: "/user/forgot-password",
+  element: <ForgotPasswordPage />,
+};
 const UserAdoptionRoute = {
   path: "/user/adoption",
   element: <AdoptionPage />,
@@ -25,10 +28,6 @@ const UserAdoptionRoute = {
 const UserBookingRoute = {
   path: "/user/booking",
   element: <BookingPage />,
-};
-const UserBookingFormRoute = {
-  path: "/user/booking-form",
-  element: <BookingFormPage />,
 };
 const UserAdoptionFormRoute = {
   path: "/user/adoption-form",
@@ -40,7 +39,7 @@ export {
   UserDashboardRoute,
   UserAdoptionRoute,
   UserRegistrationRoute,
+  UserForgotPasswordRoute,
   UserBookingRoute,
-  UserBookingFormRoute,
   UserAdoptionFormRoute,
 };

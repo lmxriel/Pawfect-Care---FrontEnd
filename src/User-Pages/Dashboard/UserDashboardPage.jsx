@@ -1,7 +1,7 @@
 import React from "react";
 import DogAndCat from "../../assets/User-Page-Image/DogAndCatImage.png";
 import UserNavigation from "../../Components/Navigation/TopNavUser";
-
+import ChatWidget from "../../Components/ChatWidget/ChatWidget";
 function UserDashboardPage() {
   return (
     <div className="min-h-screen bg-[#f9f7f7] text-gray-900 relative overflow-hidden">
@@ -96,7 +96,7 @@ function UserDashboardPage() {
           ))}
         </div>
       </div>
-
+        <ChatWidget />
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-10 px-6 md:px-20">
         <div className="text-center mb-6"></div>

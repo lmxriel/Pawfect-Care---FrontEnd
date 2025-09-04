@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PawfectCareLogo from "../../assets/User-Page-Image/PawfectCareLogo.svg";
-import Cat from "../../assets/Cat.svg";
 import UserNavigation from "../../Components/Navigation/TopNavUser";
 import BookingPoster from "../../assets/User-Page-Image/BookingPoster.png";
 import consultation from "../../assets/User-Page-Image/consultation.svg";
-import checkup from "../../assets/checkup.svg";
-import antiRabies from "../../assets/antiRabies.svg";
 import deworm from "../../assets/User-Page-Image/deworm.svg";
+import BookingFormModal from "../../Components/Modals/BookingFormModal";
 import BookingConfirmationModal from "../../Components/Modals/BookingConfirmationModal";
+import ChatWidget from "../../Components/ChatWidget/ChatWidget";
 
 function BookingPage() {
   const navigate = useNavigate();
+  const [showFormModal, setShowFormModal] = useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [bookingData, setBookingData] = useState(null);
+
   const services = [
     {
       icon: consultation,
@@ -26,6 +28,25 @@ function BookingPage() {
         "Maintain your pet’s health with proper deworming and anti-rabies treatments.",
     },
   ];
+
+  const handleBookNow = () => {
+    setShowFormModal(true);
+  };
+
+  const closeFormModal = () => {
+    setShowFormModal(false);
+  };
+
+  const closeConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
+  const handleFormSubmit = (data) => {
+    setBookingData(data);
+    setShowFormModal(false);
+    setShowConfirmationModal(true);
+    console.log("Booking submitted:", data);
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -74,7 +95,7 @@ function BookingPage() {
           {/* Booking Button */}
           <div className="flex justify-center mt-16">
             <button
-              onClick={() => navigate("/booking-form")}
+              onClick={handleBookNow}
               className="px-6 py-3 bg-white text-black font-semibold rounded-3xl shadow-md hover:bg-gray-200"
             >
               Book Now
@@ -83,9 +104,22 @@ function BookingPage() {
         </section>
       </div>
 
+      {/* Booking Form Modal */}
+      <BookingFormModal
+        isOpen={showFormModal}
+        onClose={closeFormModal}
+        onSubmit={handleFormSubmit}
+      />
+
+        <BookingConfirmationModal
+          isOpen={showConfirmationModal}
+          onClose={closeConfirmationModal}
+        />
+
+      <ChatWidget />
+
       {/* Footer */}
       <footer className="bg-white text-black py-10 px-6 md:px-20">
-        <div className="text-center mb-6"></div>
         <div className="grid grid-cols-1 md:grid-cols-4 text-m gap-8 text-center md:text-left">
           <div>
             <h4 className="font-semibold mb-2">Location:</h4>

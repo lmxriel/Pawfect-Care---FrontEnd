@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import PawfectCareLogo from "../../assets/User-Page-Image/PawfectCareLogo.svg";
 
 function UserLoginPage() {
   const [email, setEmail] = useState("");
@@ -46,12 +47,14 @@ function UserLoginPage() {
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#fdfaf6]">
       <div className="relative z-10 w-full max-w-sm space-y-6 bg-white/90 backdrop-blur-md shadow-xl rounded-2xl p-8">
         <div className="text-center">
-          <div className="text-3xl font-semibold text-[#a16f4a] flex items-center justify-center gap-2">
-            <span role="img" aria-label="paw">
-              🐾
-            </span>{" "}
-            Pawfect Care
-          </div>
+        <div className="text-3xl font-semibold text-[#a16f4a] flex items-center justify-center gap-2">
+          <img 
+            src={PawfectCareLogo} 
+            alt="Pawfect Care Logo" 
+            className="w-10 h-10" 
+          />
+          Pawfect Care
+        </div>
         </div>
 
         {/*I removed the handleLogin function from OnSubmit  Original Code: <form onSubmit={handleLogin} className="space-y-4"> */}
@@ -59,10 +62,10 @@ function UserLoginPage() {
           onSubmit={() => navigate("/user/dashboard")}
           className="space-y-4"
         >
-          <div className="flex justify-between text-sm text-amber-900">
+          <div className="flex justify-between text-sm text-amber-900 focus:ring-[#a16f4a]">
             <label>Email</label>
             <Link
-              to="/register"
+              to="/user/registration"
               className="underline text-amber-700 hover:text-amber-900"
             >
               Register
@@ -82,7 +85,7 @@ function UserLoginPage() {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full px-4 py-2 border border-[#a16f4a] rounded-full pr-10 focus:outline-none focus:ring-2 focus:ring-amber-400"
+              className="w-full px-4 py-2 border border-[#a16f4a] rounded-full pr-10 focus:outline-none focus:ring-2 focus:ring-[#a16f4a]"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -98,12 +101,12 @@ function UserLoginPage() {
           </div>
 
           <div className="flex justify-end items-center text-sm">
-            <a
-              href="/forgot-password"
+            <Link
+              to="/user/forgot-password"
               className="text-amber-700 underline hover:text-amber-900"
             >
               Forgot Password?
-            </a>
+            </Link>
           </div>
 
           {error && (
