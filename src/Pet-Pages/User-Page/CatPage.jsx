@@ -237,7 +237,7 @@ function CatPage() {
                 {/* Adopt Button */}
                 <div className="mt-6 w-full flex justify-center">
                   <button
-                    onClick={() => navigate("/adoption-form")}
+                    onClick={() => navigate("/user/adoption-form")}
                     className="px-6 py-2 bg-black text-white font-semibold rounded-3xl shadow-md hover:bg-gray-800 transition"
                   >
                     Adopt
