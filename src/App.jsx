@@ -18,18 +18,12 @@ import {
 } from "./Routes/UserRoutes/UserRoutes";
 import {
   PetRoute,
-  UserDogPageRoute,
-  UserCatPageRoute,
-  UserAllPetPageRoute,
 } from "./Routes/PetRoutes/PetRoutes";
 const routers = createBrowserRouter([
   LoginRoute,
   PetRoute,
   DashboardRoute,
   AdoptionRequestRoute,
-  UserDogPageRoute,
-  UserCatPageRoute,
-  UserAllPetPageRoute,
   AppointmentPageRoute,
   MessagesPageRoute,
   ConversationPageRoute,

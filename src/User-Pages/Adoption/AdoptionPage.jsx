@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { MessageCircle, X } from "lucide-react";
 import UserNavigation from "../../Components/Navigation/TopNavUser";
 import AdoptionBanner from "../../assets/User-Page-Image/AdoptionBanner.png";
 import PetGroup from "../../assets/User-Page-Image/PetGroup.svg";
-import AdoptionConfirmationModal from "../../Components/Modals/AdoptionConfirmationModal"; // ✅ added
+import AdoptionConfirmationModal from "../../Components/Modals/AdoptionConfirmationModal"; 
 import ChatWidget from "../../Components/ChatWidget/ChatWidget";
+import CategoryButtons from "../../Components/PetCategory/CategoryButtons";
+import PetLists from "../../Components/PetCategory/PetLists";
 
 function AdoptionPage() {
-  const navigate = useNavigate();
   const location = useLocation();
   const [showAdoptionModal, setShowAdoptionModal] = useState(false);
+  const navigate = useNavigate();
+
+  // Default category is "All" so pets show immediately
+  const [selectedCategory, setSelectedCategory] = useState("All"); 
+  const [selectedPet, setSelectedPet] = useState(null);
 
   useEffect(() => {
     if (location.state?.showAdoptionConfirmation) {
@@ -19,47 +24,16 @@ function AdoptionPage() {
         setShowAdoptionModal(false);
       }, 2000);
       window.history.replaceState({}, document.title);
+      return () => clearTimeout(timer);
     }
   }, [location]);
 
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { id: 1, sender: "bot", text: "Hello! How can we help you today? 🐾" },
-  ]);
-  const [input, setInput] = useState("");
-
-  // Handle send message
-  const sendMessage = () => {
-    if (!input.trim()) return;
-    const newMessage = { id: Date.now(), sender: "user", text: input };
-    setMessages([...messages, newMessage]);
-    setInput("");
-
-    // Optional: simulate bot reply
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now() + 1,
-          sender: "bot",
-          text: "Thanks for reaching out! We’ll get back to you soon,",
-        },
-      ]);
-    }, 1000);
-  };
-
-  // Handle Enter key
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
-
   return (
     <div className="min-h-screen text-gray-900 relative bg-white">
+      {/* Top Navigation */}
       <UserNavigation />
 
+      {/* Banner */}
       <div className="w-full bg-[#D7DBF5] mt-[64px]">
         <img
           src={AdoptionBanner}
@@ -70,47 +44,41 @@ function AdoptionPage() {
 
       {/* Pet Category Section */}
       <section className="px-6 py-12 max-w-7xl mx-auto mt-12">
-        <h2 className="text-4xl font-poppins font-bold mb-12 text-center">
+        <h2 className="text-4xl font-bold mb-12 text-center">
           Available Pets for Adoption
         </h2>
 
         {/* Category Buttons */}
-        <div className="flex justify-center gap-8 mb-0 relative z-10">
-          <button
-            onClick={() => navigate("/dogs")}
-            className="px-6 py-2 bg-[#a9b2d6] text-white font-medium rounded-3xl shadow-md"
-          >
-            Dogs
-          </button>
-          <button
-            onClick={() => navigate("/cats")}
-            className="px-6 py-2 bg-[#dbcdb4] text-white font-medium rounded-3xl shadow-md"
-          >
-            Cats
-          </button>
-          <button
-            onClick={() => navigate("/all")}
-            className="px-6 py-2 bg-[#a16f4a] text-white font-medium rounded-3xl shadow-md"
-          >
-            All
-          </button>
-        </div>
+        <CategoryButtons 
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
 
-        {/* Pet Group Image */}
-        <div className="flex justify-center -mt-48">
-          <img
-            src={PetGroup}
-            alt="Group of pets illustration"
-            className="w-[800px] max-w-full h-auto"
+        {/* Pet Group Image - hide if a category is selected */}
+        {!selectedCategory && (
+          <div className="flex justify-center -mt-48 mb-12">
+            <img
+              src={PetGroup}
+              alt="Group of pets illustration"
+              className="w-[800px] max-w-full h-auto"
+            />
+          </div>
+        )}
+
+        {/* Show pets */}
+        {selectedCategory && (
+          <PetLists
+            selectedCategory={selectedCategory}
+            onSelectPet={setSelectedPet}
           />
-        </div>
+        )}
       </section>
 
       {/* Floating Chat Icon */}
       <ChatWidget />
+
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-10 px-6 md:px-20">
-        <div className="text-center mb-6"></div>
         <div className="grid grid-cols-1 md:grid-cols-4 text-m gap-8 text-center md:text-left">
           <div>
             <h4 className="font-semibold mb-2">Location:</h4>

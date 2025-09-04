@@ -62,7 +62,7 @@ function UserLoginPage() {
           onSubmit={() => navigate("/user/dashboard")}
           className="space-y-4"
         >
-          <div className="flex justify-between text-sm text-amber-900 focus:ring-[#a16f4a]">
+          <div className="flex justify-between text-sm text-amber-900">
             <label>Email</label>
             <Link
               to="/user/registration"
@@ -85,7 +85,7 @@ function UserLoginPage() {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              className="w-full px-4 py-2 border border-[#a16f4a] rounded-full pr-10 focus:outline-none focus:ring-2 focus:ring-[#a16f4a]"
+              className="w-full px-4 py-2 border border-[#a16f4a] rounded-full pr-10 focus:outline-none focus:ring-2 focus:ring-amber-400"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
