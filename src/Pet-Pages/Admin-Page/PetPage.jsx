@@ -260,7 +260,7 @@ function PetPage() {
                 <th className="py-3">Gender</th>
                 <th className="py-3">Color</th>
                 <th className="py-3">Weight</th>
-                <th className="py-3">medical Status</th>
+                <th className="py-3">Medical Status</th>
                 <th className="py-3">Status</th>
                 <th className="py-3">Actions</th>
               </tr>

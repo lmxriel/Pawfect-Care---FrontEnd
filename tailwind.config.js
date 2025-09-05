@@ -58,7 +58,10 @@ export default {
       animation: {
         scaleUp: "scaleUp 0.3s ease-out forwards",
       },
+
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
