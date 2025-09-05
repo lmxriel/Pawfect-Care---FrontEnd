@@ -15,13 +15,13 @@ function DashboardPage() {
 
   const handleSignOut = () => {
     localStorage.removeItem("loggedInAdmin");
-    navigate("/admin/login", { replace: true });
+    navigate("/admin/dashboard", { replace: true });
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/admin/login", { replace: true });
+      navigate("/admin/dashboard", { replace: true });
     }
   }, [navigate]);
 

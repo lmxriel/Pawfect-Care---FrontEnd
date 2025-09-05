@@ -5,9 +5,9 @@ import ProtectedRoute from "../../Components/RouteGuard/ProtectionRoute";
 const PetRoute = {
   path: "/admin/pet",
   element: (
-    <ProtectedRoute>
+    // <ProtectedRoute>
       <PetPage />
-    </ProtectedRoute>
+    // </ProtectedRoute>
   ),
 };
 

@@ -14,36 +14,36 @@ const LoginRoute = {
 const DashboardRoute = {
   path: "/admin/dashboard",
   element: (
-    <ProtectedRoute>
-      <DashboardPage />
-    </ProtectedRoute>
+    // <ProtectedRoute>
+    <DashboardPage />
+    // </ProtectedRoute>
   ),
 };
 
 const AdoptionRequestRoute = {
   path: "/admin/adoption",
   element: (
-    <ProtectedRoute>
-      <AdoptionRequestPage />
-    </ProtectedRoute>
+    // <ProtectedRoute>
+    <AdoptionRequestPage />
+    // </ProtectedRoute>
   ),
 };
 
 const AppointmentPageRoute = {
   path: "/admin/appointment",
   element: (
-    <ProtectedRoute>
-      <AppointmentPage />
-    </ProtectedRoute>
+    // <ProtectedRoute>
+    <AppointmentPage />
+    // </ProtectedRoute>
   ),
 };
 
 const MessagesPageRoute = {
   path: "/admin/message",
   element: (
-    <ProtectedRoute>
-      <MessagesPage />
-    </ProtectedRoute>
+    // <ProtectedRoute>
+    <MessagesPage />
+    // </ProtectedRoute>
   ),
 };
 

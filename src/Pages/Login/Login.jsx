@@ -28,32 +28,32 @@ function Login() {
     setErrorMessage("");
     setLoading(true);
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/admin/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
+    // try {
+    //   const res = await fetch(`${API_BASE_URL}/admin/login`, {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({
+    //       email: formData.email,
+    //       password: formData.password,
+    //     }),
+    //   });
 
-      const data = await res.json();
+    //   const data = await res.json();
 
-      if (res.ok) {
-        // ✅ Save token for later use
-        localStorage.setItem("token", data.token);
+    //   if (res.ok) {
+    //     // ✅ Save token for later use
+    //     localStorage.setItem("token", data.token);
 
-        // ✅ Redirect to dashboard
-        navigate("/admin/dashboard");
-      } else {
-        setErrorMessage(data.message || "Invalid email or password");
-      }
-    } catch (err) {
-      setErrorMessage("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    // ✅ Redirect to dashboard
+    navigate("/admin/dashboard");
+    //   } else {
+    //     setErrorMessage(data.message || "Invalid email or password");
+    //   }
+    // } catch (err) {
+    //   setErrorMessage("Something went wrong. Please try again.");
+    // } finally {
+    //   setLoading(false);
+    // }
   };
   // ✅ JSX should be here, NOT inside handleLogin
   return (
@@ -76,7 +76,7 @@ function Login() {
               onChange={handleChange}
               className="w-full p-2 rounded focus:outline-none border"
               placeholder="Enter your email"
-              required
+              // required
             />
           </div>
 
@@ -90,7 +90,7 @@ function Login() {
               onChange={handleChange}
               className="w-full p-2 rounded focus:outline-none border"
               placeholder="Enter your password"
-              required
+              // required
             />
             <button
               type="button"

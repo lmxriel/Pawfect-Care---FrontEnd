@@ -326,78 +326,85 @@ function PetPage() {
         {/* Form Modal */}
         {showForm && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
-            <div className="bg-white p-6 rounded-md shadow-lg w-96">
-              <h2 className="text-lg font-semibold mb-4">
+            <div className="bg-white p-6 rounded-md shadow-lg w-[700px] max-w-3xl">
+              <h2 className="text-2xl font-semibold mb-4">
                 {editingPet ? "Edit Pet" : "Add Pet"}
               </h2>
-              <form className="space-y-3" onSubmit={handleSubmit}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Pet Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  required
-                />
-                <input
-                  type="text"
-                  name="breed"
-                  placeholder="Breed"
-                  value={formData.breed}
-                  onChange={handleChange}
-                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  required
-                />
-                <input
-                  type="text"
-                  name="size"
-                  placeholder="Size"
-                  value={formData.size}
-                  onChange={handleChange}
-                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  required
-                />
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleChange}
-                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  required
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <input
-                  type="text"
-                  name="color"
-                  placeholder="Color"
-                  value={formData.color}
-                  onChange={handleChange}
-                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
-                <input
-                  type="text"
-                  name="weight"
-                  placeholder="Weight"
-                  value={formData.weight}
-                  onChange={handleChange}
-                  className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                />
 
-                {/* Medical History */}
+              <form className="space-y-3" onSubmit={handleSubmit}>
+                {/* Pet Name & Breed */}
+                <div className="grid grid-cols-2 gap-3">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Pet Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="breed"
+                    placeholder="Breed"
+                    value={formData.breed}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    required
+                  />
+                </div>
+
+                {/* Size & Gender */}
+                <div className="grid grid-cols-2 gap-3">
+                  <input
+                    type="text"
+                    name="size"
+                    placeholder="Size"
+                    value={formData.size}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    required
+                  />
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    required
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+
+                {/* Color & Weight */}
+                <div className="grid grid-cols-2 gap-3">
+                  <input
+                    type="text"
+                    name="color"
+                    placeholder="Color"
+                    value={formData.color}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  />
+                  <input
+                    type="text"
+                    name="weight"
+                    placeholder="Weight"
+                    value={formData.weight}
+                    onChange={handleChange}
+                    className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  />
+                </div>
+
+                {/* Medical Status */}
                 <div>
-                  <label className="block mb-1 font-medium">
-                    Medical Status
-                  </label>
-                  <div className="space-y-2">
+                  <label className="block mb-1 font-medium">Medical Status</label>
+                  <div className="grid grid-cols-2 gap-2">
                     {["Vaccinated", "Dewormed", "Spayed/Neutered", "Other"].map(
                       (option) => (
-                        <div
-                          key={option}
-                          className="flex items-center space-x-2"
-                        >
+                        <label key={option} className="flex items-center space-x-2">
                           <input
                             type="checkbox"
                             name="medical_status"
@@ -405,49 +412,37 @@ function PetPage() {
                             checked={formData.medical_status?.includes(option)}
                             onChange={(e) => {
                               const { value, checked } = e.target;
-                              let updatedMedical = [
-                                ...(formData.medical_status || []),
-                              ];
-
-                              if (checked) {
-                                updatedMedical.push(value);
-                              } else {
+                              let updatedMedical = [...(formData.medical_status || [])];
+                              if (checked) updatedMedical.push(value);
+                              else
                                 updatedMedical = updatedMedical.filter(
                                   (item) => item !== value
                                 );
-                              }
-
-                              setFormData({
-                                ...formData,
-                                medical_status: updatedMedical,
-                              });
+                              setFormData({ ...formData, medical_status: updatedMedical });
                             }}
                             className="h-4 w-4 text-blue-600 border-gray-300 rounded"
                           />
                           <span>{option}</span>
-                        </div>
+                        </label>
                       )
                     )}
-
-                    {/* Show text field when "Other" is selected */}
-                    {formData.medical_status?.includes("Other") && (
-                      <input
-                        type="text"
-                        name="otherMedical"
-                        placeholder="Please specify"
-                        value={formData.otherMedical || ""}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            otherMedical: e.target.value,
-                          })
-                        }
-                        className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-2"
-                      />
-                    )}
                   </div>
+
+                  {formData.medical_status?.includes("Other") && (
+                    <input
+                      type="text"
+                      name="otherMedical"
+                      placeholder="Please specify"
+                      value={formData.otherMedical || ""}
+                      onChange={(e) =>
+                        setFormData({ ...formData, otherMedical: e.target.value })
+                      }
+                      className="border p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mt-2"
+                    />
+                  )}
                 </div>
 
+                {/* Upload Image */}
                 <div>
                   <label className="block mb-1 font-medium">Upload Image</label>
                   <input
@@ -465,6 +460,7 @@ function PetPage() {
                   )}
                 </div>
 
+                {/* Status */}
                 <select
                   name="status"
                   value={formData.status}
@@ -476,6 +472,7 @@ function PetPage() {
                   <option value="Unavailable">Unavailable</option>
                 </select>
 
+                {/* Buttons */}
                 <div className="flex justify-end space-x-2 pt-3">
                   <button
                     type="button"
@@ -495,6 +492,7 @@ function PetPage() {
             </div>
           </div>
         )}
+
 
         {/* Delete Confirmation Modal */}
         {showDeleteModal && (
